@@ -1,12 +1,15 @@
 import './App.css';
 import { useState, useEffect, useRef } from 'react';
 
+// FIX 1: Moved roles outside the component so it doesn't trigger the useEffect dependency warning
+const roles = ['Web Developer', 'AI Enthusiast', 'React Developer', 'Problem Solver'];
+
 function App() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [activeSection, setActiveSection] = useState('home');
   const [typedText, setTypedText] = useState('');
-  const roles = ['Web Developer', 'AI Enthusiast', 'React Developer', 'Problem Solver'];
+  
   const roleIndex = useRef(0);
   const charIndex = useRef(0);
   const isDeleting = useRef(false);
@@ -168,7 +171,8 @@ function App() {
         <div className="container">
           <div className="about-grid">
             <div>
-              <span className="section-tag">// about me</span>
+              {/* FIX 2: Wrapped text-comments in {""} */}
+              <span className="section-tag">{"// about me"}</span>
               <h2>Building the <span className="accent">future</span>,<br />one commit at a time.</h2>
               <div className="divider" />
             </div>
@@ -189,7 +193,7 @@ function App() {
       <section id="skills" className="skills-section">
         <div className="container">
           <div className="section-header">
-            <span className="section-tag">// skills</span>
+            <span className="section-tag">{"// skills"}</span>
             <h2>What I <span className="accent">work with</span></h2>
             <div className="divider" />
           </div>
@@ -211,7 +215,7 @@ function App() {
       <section id="projects" className="projects-section">
         <div className="container">
           <div className="section-header">
-            <span className="section-tag">// projects</span>
+            <span className="section-tag">{"// projects"}</span>
             <h2>Selected <span className="accent">work</span></h2>
             <div className="divider" />
           </div>
@@ -235,7 +239,7 @@ function App() {
       <section id="contact" className="contact-section">
         <div className="container">
           <div className="contact-wrap">
-            <span className="section-tag">// contact</span>
+            <span className="section-tag">{"// contact"}</span>
             <h2>Let's <span className="accent">connect</span></h2>
             <div className="divider" />
             <p className="contact-sub">Have a project in mind or want to collaborate? I'd love to hear from you.</p>
